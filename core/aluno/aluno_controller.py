@@ -20,7 +20,7 @@ def adicionar_aluno():
    aluno = aluno_service.adicionar_aluno(obj_aluno)
    return jsonify(aluno), 201
 
-@aluno_controller.route('/<int:id>', methods=['GET'])
+@aluno_controller.route('/<int:id>', methods=['GET']) # /<int:id> coloco isto para passar o id pela url
 def obter_aluno(id):
     aluno = aluno_service.obter_aluno_por_id(id)  # ✅ usa a instância
     if aluno:
