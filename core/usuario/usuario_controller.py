@@ -15,8 +15,7 @@ def listar_usuarios():
 @usuario_controller.route('/', methods=['POST'])
 def adicionar_usuario():
    dados = request.get_json()
-   obj_usuario = Usuario(id=0, nome=dados["nome"], idade=dados["idade"], cpf=dados["cpf"])
-   usuario_service.adicionar_usuario(obj_usuario)
+   obj_usuario = Usuario(id=0, usuario=dados["usuario"], senha=dados["senha"], ativo=dados["ativo"])
    usuario = usuario_service.adicionar_usuario(obj_usuario)
    return jsonify(usuario), 201
 
@@ -37,9 +36,29 @@ def remover_usuario(id):
 @usuario_controller.route('/', methods=['PUT'])
 def atualizar_usuario():
    dados = request.get_json()
-   obj_usuario = Usuario(id=dados["id"], nome=dados["nome"], idade=dados["idade"], cpf=dados["cpf"])
+   obj_usuario = Usuario(id=dados["id"], usuario=dados["usuario"], senha=dados["senha"], ativo=dados["ativo"])
    usuario = usuario_service.atualizar_usuario(obj_usuario)
    if usuario:
       return jsonify(usuario), 200
    else:
-      return jsonify({"erro": "Aluno não encontrado"}), 404
+      return jsonify({"erro": "Usuário não encontrado"}), 404
+   
+@usuario_controller.route('/<string:usuario>/<string:senha>', methods=['GET']) # /<int:usuario>/<str:senha> coloco isto para passar o id pela url
+def obter_usuario_por_usuario_senha(usuario, senha):
+    usuario = usuario_service.obter_usuario_por_usuario_senha(usuario, senha)  # ✅ usa a instância
+    if usuario:
+        return jsonify(usuario), 200
+    else:
+        return jsonify({"erro": "usuario não encontrado"}), 404
+   
+
+
+@usuario_controller.route('/login', methods=['POST'])
+def obter_usuario_por_user_senha():
+    dados = request.get_json()
+    obj_usuario = Usuario(usuario=dados['usuario'], senha=dados['senha'])
+    usuario = usuario_service.obter_usuario_por_user_senha(obj_usuario)
+    if usuario:
+        return jsonify(usuario), 200
+    else:
+        return jsonify({"erro": "Usuário não encontrado"}), 404

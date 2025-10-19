@@ -1,11 +1,11 @@
 # esse é o modelo Usuário
 
 class Usuario:
-    def __init__(self, id=0, nome="", senha=0, status=0):
+    def __init__(self, id=0, usuario="", senha=0, ativo=0):
         self.__id = id
-        self.__nome = nome
+        self.__usuario = usuario
         self.__senha = senha
-        self.__status = status
+        self.__ativo = ativo
     
     @property
     def id(self):
@@ -16,12 +16,12 @@ class Usuario:
         self.__id = novo_id
 
     @property
-    def nome(self):
-        return self.__nome
+    def usuario(self):
+        return self.__usuario
     
-    @nome.setter
-    def nome(self, novo_nome):
-        self.__nome = novo_nome
+    @usuario.setter
+    def usuario(self, novo_usuario):
+        self.__usuario = novo_usuario
     
     @property
     def senha(self):
@@ -32,11 +32,11 @@ class Usuario:
         self.__senha = nova_senha
   
     @property
-    def status(self):
-        return self.__status
+    def ativo(self):
+        return self.__ativo
     
-    @status.setter
-    def status(self, novo_status):
-        self.__status = novo_status
+    @ativo.setter
+    def ativo(self, novo_ativo):
+        self.__ativo = novo_ativo
 
 

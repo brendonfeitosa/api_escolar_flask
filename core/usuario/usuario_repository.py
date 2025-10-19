@@ -41,7 +41,7 @@ class UsuarioRepository:
         conn.commit()
         novo_id = cursor.lastrowid
         conn.close()
-        return {"id": novo_id, "usuario": obj_usuario.usuario, "ativo": obj_usuario.ativo}
+        return {"id": novo_id, "usuario": obj_usuario.usuario, "senha": obj_usuario.senha, "ativo": obj_usuario.ativo}
 
     def atualizar(self, obj_usuario: Usuario):
         conn = self.conectar()
@@ -73,3 +73,16 @@ class UsuarioRepository:
         if row:
             return {"id": row[0], "usuario": row[1], "senha": row[2], "ativo": bool(row[3])}
         return None
+    
+    def obter_usuario_por_user_senha(self, obj_usuario: Usuario):
+        if obj_usuario:
+            conn = self.conectar()
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, usuario, senha, ativo FROM usuarios WHERE usuario = ? AND senha = ? AND ativo = 1", (obj_usuario.usuario, obj_usuario.senha))
+            row = cursor.fetchone()
+            conn.close()
+            if row:
+                return {"id": row[0], "usuario": row[1], "senha": row[2], "ativo": bool(row[3])}
+            return None
+        else:
+            return None
