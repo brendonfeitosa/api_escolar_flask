@@ -19,7 +19,7 @@ def listar_alunos():
 def adicionar_aluno():
    dados = request.get_json()
    obj_aluno = Aluno(id=0, nome=dados["nome"], idade=dados["idade"], cpf=dados["cpf"])
-   aluno_service.adicionar_aluno(obj_aluno)
+   #aluno_service.adicionar_aluno(obj_aluno)
    aluno = aluno_service.adicionar_aluno(obj_aluno)
    return jsonify(aluno), 201
 
