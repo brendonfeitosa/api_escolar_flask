@@ -45,7 +45,8 @@ class UsuarioService:
             return None
         else:
             return usuario
-        
+
+    #fazer a busca do usuário sem passar pela URL    
     def obter_usuario_por_user_senha(self, obj_usuario: Usuario):
         usuario = self.repository.obter_usuario_por_user_senha(obj_usuario)
         if not usuario:

@@ -74,6 +74,7 @@ class UsuarioRepository:
             return {"id": row[0], "usuario": row[1], "senha": row[2], "ativo": bool(row[3])}
         return None
     
+    #fazer a busca do usuário sem passar pela URL
     def obter_usuario_por_user_senha(self, obj_usuario: Usuario):
         if obj_usuario:
             conn = self.conectar()

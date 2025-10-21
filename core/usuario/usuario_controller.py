@@ -52,7 +52,7 @@ def obter_usuario_por_usuario_senha(usuario, senha):
         return jsonify({"erro": "usuario não encontrado"}), 404
    
 
-
+#fazer a busca do usuário sem passar pela URL
 @usuario_controller.route('/login', methods=['POST'])
 def obter_usuario_por_user_senha():
     dados = request.get_json()
