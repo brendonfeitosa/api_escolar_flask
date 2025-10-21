@@ -1,7 +1,7 @@
 # esse é o modelo Usuário
 
 class Usuario:
-    def __init__(self, id=0, usuario="", senha=0, ativo=0):
+    def __init__(self, id=None, usuario="", senha=0, ativo=0):
         self.__id = id
         self.__usuario = usuario
         self.__senha = senha

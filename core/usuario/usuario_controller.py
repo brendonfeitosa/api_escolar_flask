@@ -25,7 +25,7 @@ def obter_usuario(id):
     if usuario:
         return jsonify(usuario), 200
     else:
-        return jsonify({"erro": "usuario não encontrado"}), 404
+        return jsonify({"erro": "Usuario não encontrado"}), 404
 
    
 @usuario_controller.route('/<int:id>', methods=['DELETE']) # /<int:id> coloco isto para passar o id pela url
@@ -42,7 +42,11 @@ def atualizar_usuario():
       return jsonify(usuario), 200
    else:
       return jsonify({"erro": "Usuário não encontrado"}), 404
-   
+
+
+
+
+
 @usuario_controller.route('/<string:usuario>/<string:senha>', methods=['GET']) # /<int:usuario>/<str:senha> coloco isto para passar o id pela url
 def obter_usuario_por_usuario_senha(usuario, senha):
     usuario = usuario_service.obter_usuario_por_usuario_senha(usuario, senha)  # ✅ usa a instância
@@ -51,6 +55,9 @@ def obter_usuario_por_usuario_senha(usuario, senha):
     else:
         return jsonify({"erro": "usuario não encontrado"}), 404
    
+"""  
+Essas funções não serão usadas, vamos chamar ela no arquivo de autenticação
+
 
 #fazer a busca do usuário sem passar pela URL
 @usuario_controller.route('/login', methods=['POST'])
@@ -62,3 +69,4 @@ def obter_usuario_por_user_senha():
         return jsonify(usuario), 200
     else:
         return jsonify({"erro": "Usuário não encontrado"}), 404
+"""

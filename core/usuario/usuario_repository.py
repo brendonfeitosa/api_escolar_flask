@@ -63,7 +63,11 @@ class UsuarioRepository:
         linhas = cursor.rowcount
         conn.close()
         return linhas > 0
-   
+
+"""  
+Essas funções não serão usadas, vamos chamar ela no arquivo de autenticação
+
+
     def buscar_usuario_por_usuario_senha(self, usuario, senha):
         conn = self.conectar()
         cursor = conn.cursor()
@@ -87,3 +91,4 @@ class UsuarioRepository:
             return None
         else:
             return None
+"""
