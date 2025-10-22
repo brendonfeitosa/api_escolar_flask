@@ -1,5 +1,5 @@
 import sqlite3
-from core.materias.materias import Materia
+from core.materia.materia import Materia
 
 DB_NAME = "escola.db"
 
@@ -36,7 +36,7 @@ class MateriaRepository:
         conn.commit()
         novo_id = cursor.lastrowid
         conn.close()
-        return {"id": novo_id, "nome": obj_materia.nome, "sigla_curricular": obj_materia.idade, "descricao": obj_materia.descricao}
+        return {"id": novo_id, "nome": obj_materia.nome, "sigla_curricular": obj_materia.sigla_curricular, "descricao": obj_materia.descricao}
 
     def atualizar(self, obj_materia: Materia):
         conn = self.conectar()

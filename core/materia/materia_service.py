@@ -1,5 +1,5 @@
-from core.materias.materias_repository import MateriaRepository
-from core.materias.materias import Materia # vou usar o modelo aluno para validações
+from core.materia.materia_repository import MateriaRepository
+from core.materia.materia import Materia # vou usar o modelo aluno para validações
 
 class MateriaService:
     def __init__(self):

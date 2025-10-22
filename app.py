@@ -2,7 +2,7 @@ from flask import Flask
 from core.aluno.aluno_controller import aluno_controller
 from core.usuario.usuario_controller import usuario_controller
 from core.professor.professor_controller import professor_controller
-from core.materias.materias_controller import materia_controller
+from core.materia.materia_controller import materia_controller
 
 app = Flask(__name__)
 

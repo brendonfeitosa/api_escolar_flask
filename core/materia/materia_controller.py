@@ -1,7 +1,7 @@
 # controller do aluno
 from flask import Blueprint, request, jsonify
-from core.materias.materias_service import MateriaService
-from core.materias.materias import Materia
+from core.materia.materia_service import MateriaService
+from core.materia.materia import Materia
 from core.autenticacao.autenticacao import autenticacao # estou criando a autenticação em alguns endpints
 
 materia_service = MateriaService()
@@ -29,7 +29,7 @@ def obter_materia(id):
     if materia:
         return jsonify(materia), 200
     else:
-        return jsonify({"erro": "materia não encontrado"}), 404
+        return jsonify({"erro": "materia não encontrada"}), 404
 
    
 @materia_controller.route('/<int:id>', methods=['DELETE']) # /<int:id> coloco isto para passar o id pela url
