@@ -22,8 +22,8 @@ def autenticacao(f):
             return jsonify({"erro": "Credenciais inválidas"}), 401
 
         # Verifica o usuário cadastrado no banco de dados e suas credenciais de acesso
-        service = UsuarioService()
-        user = service.obter_usuario_por_usuario_senha(usuario, senha)
+        usuario_service = UsuarioService()
+        user = usuario_service.obter_usuario_por_usuario_senha(usuario, senha)
         if (not user or user["senha"] != senha or not user["ativo"] or user["usuario"] != usuario):
             return jsonify({"erro": "Usuário ou senha inválidos"}), 401
 
