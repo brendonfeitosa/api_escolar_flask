@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify
 from core.aluno.aluno_service import AlunoService
 from core.aluno.aluno import Aluno
 from core.autenticacao.autenticacao import autenticacao # estou criando a autenticação em alguns endpints
+from core.validador.validador import validar_dados_aluno
 
 aluno_service = AlunoService()
 
@@ -18,8 +19,13 @@ def listar_alunos():
 @autenticacao # antes de exibir os alunos ele passa pela validação da autenticação
 def adicionar_aluno():
    dados = request.get_json()
+
+   # validar cpf, nome e idade
+   validacao = validar_dados_aluno(cpf=dados["cpf"], nome=dados["nome"], idade=dados["idade"])
+   if validacao != True:
+      return jsonify(validacao), 400
+   
    obj_aluno = Aluno(id=0, nome=dados["nome"], idade=dados["idade"], cpf=dados["cpf"])
-   #aluno_service.adicionar_aluno(obj_aluno)
    aluno = aluno_service.adicionar_aluno(obj_aluno)
    return jsonify(aluno), 201
 
@@ -43,6 +49,12 @@ def remover_aluno(id):
 @autenticacao # antes de exibir os alunos ele passa pela validação da autenticação
 def atualizar_aluno():
    dados = request.get_json()
+
+   # validar cpf, nome e idade
+   validacao = validar_dados_aluno(cpf=dados["cpf"], nome=dados["nome"], idade=dados["idade"])
+   if validacao != True:
+      return jsonify(validacao), 400
+   
    obj_aluno = Aluno(id=dados["id"], nome=dados["nome"], idade=dados["idade"], cpf=dados["cpf"])
    aluno = aluno_service.atualizar_aluno(obj_aluno)
    if aluno:
