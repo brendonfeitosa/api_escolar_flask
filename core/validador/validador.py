@@ -6,6 +6,7 @@ def validar_cpf(cpf):
     Retorna True se for válido, False caso contrário.
     """
     # Remove caracteres que não são números
+
     cpf = re.sub(r'\D', '', cpf)
 
     if len(cpf) != 11:
@@ -42,6 +43,7 @@ def validar_idade(idade):
     return True if idade >= 0 and idade < 125 else False
 
 def validar_dados_aluno(cpf, nome, idade):
+    cpf = str(cpf)
     """
     Valida cpf, nome, idade
     Retonrna Dicionário com mensagem de erro

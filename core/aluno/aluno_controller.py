@@ -21,7 +21,8 @@ def adicionar_aluno():
    dados = request.get_json()
 
    # validar cpf, nome e idade
-   validacao = validar_dados_aluno(cpf=dados["cpf"], nome=dados["nome"], idade=dados["idade"])
+   idade = int(dados["idade"])
+   validacao = validar_dados_aluno(cpf=dados["cpf"], nome=dados["nome"], idade=idade)
    if validacao != True:
       return jsonify(validacao), 400
    
